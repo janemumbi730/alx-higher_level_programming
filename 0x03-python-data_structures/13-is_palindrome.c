@@ -1,34 +1,32 @@
 #include "lists.h"
 
 /**
- * reverse - reverses the second half of the list
- *
- * @h_r: head of the second half
- * Return: no return
+ * reverse - reverses snd half of list
+ * @head: head of snd half
+ * Return: void
  */
-void reverse(listint_t **h_r)
+void reverse(listint_t **head)
 {
-	listint_t *prv;
-	listint_t *crr;
-	listint_t *nxt;
+	listint_t *prev;
+	listint_t *curr;
+	listint_t *nextt;
 
-	prv = NULL;
-	crr = *h_r;
+	prev = NULL;
+	curr = *head;
 
-	while (crr != NULL)
+	while (curr != NULL)
 	{
-		nxt = crr->next;
-		crr->next = prv;
-		prv = crr;
-		crr = nxt;
+		nextt = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = nextt;
 	}
 
-	*h_r = prv;
+	*head = prev;
 }
 
 /**
  * compare - compares each int of the list
- *
  * @h1: head of the first half
  * @h2: head of the second half
  * Return: 1 if are equals, 0 if not
