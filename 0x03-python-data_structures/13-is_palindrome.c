@@ -1,11 +1,11 @@
 #include "lists.h"
 
 /**
- * reverse - reverses snd half of list
+ * turn - reverses snd half of list
  * @head: head of snd half
  * Return: void
  */
-void reverse(listint_t **head)
+void turn(listint_t **head)
 {
 	listint_t *prev;
 	listint_t *curr;
@@ -26,25 +26,25 @@ void reverse(listint_t **head)
 }
 
 /**
- * compare - compares each int of the list
- * @h1: head of the first half
- * @h2: head of the second half
- * Return: 1 if are equals, 0 if not
+ * look - compares each int of the list
+ * @h1: head of first half
+ * @h2: head of second half
+ * Return: 1 or 0 if not equal
  */
-int compare(listint_t *h1, listint_t *h2)
+int look(listint_t *h1, listint_t *h2)
 {
-	listint_t *tmp1;
-	listint_t *tmp2;
+	listint_t *temp1;
+	listint_t *temp2;
 
-	tmp1 = h1;
-	tmp2 = h2;
+	temp1 = h1;
+	temp2 = h2;
 
-	while (tmp1 != NULL && tmp2 != NULL)
+	while (temp1 != NULL && temp2 != NULL)
 	{
-		if (tmp1->n == tmp2->n)
+		if (temp1->n == temp2->n)
 		{
-			tmp1 = tmp1->next;
-			tmp2 = tmp2->next;
+			temp1 = temp1->next;
+			temp2 = temp2->next;
 		}
 		else
 		{
@@ -52,7 +52,7 @@ int compare(listint_t *h1, listint_t *h2)
 		}
 	}
 
-	if (tmp1 == NULL && tmp2 == NULL)
+	if (temp1 == NULL && temp2 == NULL)
 	{
 		return (1);
 	}
@@ -61,21 +61,19 @@ int compare(listint_t *h1, listint_t *h2)
 }
 
 /**
- * is_palindrome - checks if a singly linked list
- * is a palindrome
- * @head: pointer to head of list
- * Return: 0 if it is not a palindrome,
- * 1 if it is a palndrome
+ * is_palindrome - checks if list is a palindrome
+ * @head: pointer to head list
+ * Return: 0 or 1 if it is a palndrome
  */
 int is_palindrome(listint_t **head)
 {
 	listint_t *slow, *fast, *prev_slow;
-	listint_t *scn_half, *middle;
-	int isp;
+	listint_t *scanhalf, *middle;
+	int ispal;
 
 	slow = fast = prev_slow = *head;
 	middle = NULL;
-	isp = 1;
+	ispal = 1;
 
 	if (*head != NULL && (*head)->next != NULL)
 	{
@@ -92,21 +90,21 @@ int is_palindrome(listint_t **head)
 			slow = slow->next;
 		}
 
-		scn_half = slow;
+		scanhalf = slow;
 		prev_slow->next = NULL;
-		reverse(&scn_half);
-		isp = compare(*head, scn_half);
+		turn(&scanhalf);
+		ispal = look(*head, scanhalf);
 
 		if (middle != NULL)
 		{
 			prev_slow->next = middle;
-			middle->next = scn_half;
+			middle->next = scanhalf;
 		}
 		else
 		{
-			prev_slow->next = scn_half;
+			prev_slow->next = scanhalf;
 		}
 	}
 
-	return (isp);
+	return (ispal);
 }
