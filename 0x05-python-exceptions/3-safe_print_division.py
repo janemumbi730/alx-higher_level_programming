@@ -1,9 +1,16 @@
-#!/usr/bin/python3
 def safe_print_division(a, b):
     try:
-        div = a / b
-    except:
-        div = None
+        result = a / b
+    except ZeroDivisionError:
+        print("Inside result: None")
+        print("Error: Division by zero is not allowed.")
+        return None
+    except Exception as e:
+        print("Inside result: None")
+        print("Error:", str(e))
+        return None
+    else:
+        print("Inside result: {}".format(result))
+        return result
     finally:
-        print("Inside result: {}".format(div))
-    return div
+        print("Finally block executed.")
