@@ -1,8 +1,24 @@
 #!/usr/bin/python3
-PrevSquare = __import__('10-square').Square
-class Square(PrevSquare):
+"""
+Module 11-square
+"""
+
+
+Rectangle = __import__('9-rectangle').Rectangle
+
+
+class Square(Rectangle):
+    """inherits from Rectangle, who inherits from BaseGeometry
+    methods:
+        __init__(self, size)
+        __str___(self)
+    """
     def __init__(self, size):
-        super().__init__(size)
+        """initializes size"""
+        self.integer_validator("size", size)
+        self.__size = size
+        super().__init__(size, size)
 
     def __str__(self):
-        return '[Square] {0:d}/{0:d}'.format(self.__size)
+        """allows print to print"""
+        return ("[Square] {}/{}".format(self.__size, self.__size))
