@@ -1,16 +1,36 @@
 #!/usr/bin/python3
-prevRectangle = __import__('8-rectangle').Rectangle
+"""
+Module 9-rectangle
+inherits from class BaseGeometry
+and initializes
+"""
 
 
-class Rectangle(prevRectangle):
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+
+class Rectangle(BaseGeometry):
+    """
+    inherits frpm BaseGeometry
+    methods:
+    __init__(self, width, height)
+    area(self)
+    __str__(self)
+    """
+
     def __init__(self, width, height):
-        self.integer_validator('width', width)
+        """
+        initialization of width and height
+        """
+        super().integer_validator("width", width)
         self.__width = width
-        self.integer_validator('height', height)
+        super().integer_validator("height", height)
         self.__height = height
 
     def area(self):
+        """Implements the area"""
         return self.__width * self.__height
 
     def __str__(self):
-        return '[Rectangle] {:d}/{:d}'.format(self.__width, self.__height)
+        """Allows print to print"""
+        return ("[Rectangle] {}/{}".format(self.__width, self.__height))
