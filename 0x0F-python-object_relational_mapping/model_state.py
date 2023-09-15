@@ -2,18 +2,15 @@
 
 """Class State"""
 
-from sys import argv
-from sqlalchemy import Column, Integer, String
+import sqlalchemy
+from sqlalchemy import create_engine, Column, Integer, UniqueConstraint, String
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-
 class State(Base):
-    '''
-    Class State; instance of Base
-    Linked to MySQL 
-    '''
+    """Class State"""
     __tablename__ = 'states'
-    id = Column(Integer, primary_key=True)
-    name = Column(String(128), nullable=False)
+
+    id = Column(Integer, primary_key=True, autoincrement=True, unique=True)
+    name = Column(String(length=128), nullable=False)
